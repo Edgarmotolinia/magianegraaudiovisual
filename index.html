@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agencia de Espectáculos</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .carousel-container {
+            max-width: 80%; /* Limitar el ancho del carrusel en pantallas grandes */
+            margin: 0 auto; /* Centrar horizontalmente */
+            background-color: black; /* Fondo negro */
+        }
+        .carousel-item img {
+            height: 400px; /* Fijar la altura de las imágenes */
+            object-fit: cover; /* Asegurar que las imágenes se ajusten sin distorsión */
+            width: 100%; /* Hacer que las imágenes ocupen todo el ancho */
+        }
+
+        /* Para pantallas pequeñas, ajustar el tamaño del carrusel */
+        @media (max-width: 768px) {
+            .carousel-container {
+                max-width: 100%; /* En pantallas pequeñas, ocupar el 100% del ancho */
+            }
+            .carousel-item img {
+                height: auto; /* Ajustar la altura en pantallas pequeñas */
+                max-height: 400px; /* Mantener una altura máxima */
+            }
+        }
+
+        /* Estilos del footer clásico en escala de grises */
+        footer {
+            background-color: #f8f9fa; /* Fondo en escala de grises */
+            color: #6c757d; /* Texto en gris */
+            padding: 20px 0;
+            text-align: center; /* Centrar el texto */
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: #6c757d;
+            text-decoration: none;
+        }
+        footer a:hover {
+            color: #343a40; /* Oscurecer el color al pasar el cursor */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section con Carrusel centrado -->
+    <section id="hero" class="hero">
+        <div id="heroCarousel" class="carousel slide carousel-container" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://res.cloudinary.com/dqyuxgeuv/image/upload/v1729227361/MagiaNegra_bly58r.jpg" class="d-block w-100" alt="Imagen 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://res.cloudinary.com/dqyuxgeuv/image/upload/v1729227361/1w_c8yba1.jpg" class="d-block w-100" alt="Imagen 2">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://res.cloudinary.com/dqyuxgeuv/image/upload/v1729227361/2w_djtgy1.jpg" class="d-block w-100" alt="Imagen 3">
+                </div>
+            </div>
+
+            <!-- Controles del Carrusel -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer clásico centrado en escala de grises -->
+    <footer>
+        <p>&copy; 2024 Magia Negra Audiovisual. Todos los derechos reservados.</p>
+        <p>Sitio en mantenimiento.</p>
+        <a href="https://wa.me/525577193213" target="_blank">
+            <i class="fab fa-whatsapp"></i> Contáctanos en WhatsApp
+        </a>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
