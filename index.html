@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta charset="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Magia Negra Audiovisual | Agencia de Medios Audiovisuales | Espectáculos Audiovisuales Profesionales - Magia Negra</title>
     
     <!-- Meta descripción optimizada -->
@@ -25,22 +25,22 @@
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
-            font-size: 1rem; /* Fuente base */
+            font-size: 1rem;
         }
 
         .carousel-container {
             width: 100%;
             height: 100vh;
             margin: 0 auto;
-            display: flex; /* Usamos flexbox */
-            align-items: center; /* Centrar verticalmente */
-            justify-content: center; /* Centrar horizontalmente */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .carousel-item img {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Ajustar imagen dentro del contenedor */
+            object-fit: contain;
             object-position: center;
         }
 
@@ -82,9 +82,9 @@
 
         /* Estilos para el modal */
         .modal-content {
-            background: transparent; /* Hace el fondo del modal transparente */
-            border: none; /* Elimina bordes del modal */
-            box-shadow: none; /* Elimina sombras del modal */
+            background: transparent;
+            border: none;
+            box-shadow: none;
         }
 
         .modal-body {
@@ -92,50 +92,20 @@
             justify-content: center;
             align-items: center;
             position: relative;
+            background-color: black; /* Fondo por defecto del modal */
         }
 
         .modal-body img {
-            max-width: 100%;
+            width: 100%;
             height: auto;
         }
 
-        .btn-close-modal {
-            position: absolute;
-            top: 10px;
-            right: 20px; /* Ajusta la distancia del botón respecto a la imagen */
-            background-color: rgba(0, 0, 0, 0.5);
-            border: none;
-            border-radius: 50%;
-            color: white;
-            padding: 8px;
-            cursor: pointer;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000; /* Asegura que el botón esté por encima de la imagen */
-        }
-
-        .btn-close-modal:hover {
-            background-color: rgba(0, 0, 0, 0.7);
-        }
-
-        /* Asegura que el fondo original del body se mantenga */
-        body.modal-open {
-            background-image: url('https://res.cloudinary.com/dqyuxgeuv/image/upload/v1729369720/background_czwhsd.png');
-        }
-
-        /* Estilos específicos para pantallas pequeñas */
-        @media (max-width: 768px) {
-            .modal-body {
-                justify-content: flex-start; /* Mueve la imagen hacia abajo */
-                margin-top: 50px; /* Desplaza hacia abajo la imagen emergente */
-                align-items: center; /* Mantiene la imagen centrada horizontalmente */
-            }
-
-            .btn-close-modal {
-                top: 60px; /* Mueve el botón junto con la imagen */
-                right: 20px; /* Mantén el botón en la esquina derecha */
+        /* Fondo específico para pantallas pequeñas en la segunda imagen del modal */
+        @media (max-width: 576px) {
+            .modal-body.second-image-modal {
+                background-image: url('https://res.cloudinary.com/dqyuxgeuv/image/upload/v1729993574/1_FONDO_VM_ARQUITECTONICO_d8wfpp.webp');
+                background-size: cover;
+                background-position: center;
             }
         }
     </style>
@@ -147,46 +117,35 @@
         <div id="heroCarousel" class="carousel slide carousel-container" data-bs-ride="carousel">
             <div class="carousel-inner">
                 
+                <!-- Primera imagen del carrusel -->
                 <div class="carousel-item active">
                     <img src="https://res.cloudinary.com/dqyuxgeuv/image/upload/v1729376828/logoSOLO_fkykxe.png" class="d-block w-100" alt="Espectáculo audiovisual con realidad aumentada">
                 </div>
-                <!-- Segunda imagen, coloca la URL de la imagen grande aquí -->
+
+                <!-- Segunda imagen del carrusel con comportamiento específico al hacer clic -->
                 <div class="carousel-item">
-                    <img src="https://res.cloudinary.com/dqyuxgeuv/image/upload/v1729376828/A1_ARQ.png" class="d-block w-100" alt="Producción de espectáculos audiovisuales para eventos en México" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-image="https://res.cloudinary.com/dqyuxgeuv/image/upload/v1729735267/1_osms9f.png">
-                </div>
-                <!-- Tercera imagen, coloca la URL de la imagen grande aquí -->
-                <div class="carousel-item">
-                    <img src="https://res.cloudinary.com/dqyuxgeuv/image/upload/v1729376828/A2_INT.png" class="d-block w-100" alt="Agencia de medios audiovisuales para eventos corporativos y conciertos" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-image="https://res.cloudinary.com/dqyuxgeuv/image/upload/v1729735257/2_oth8cb.png">
-                </div>
-                <!-- Cuarta imagen, coloca la URL de la imagen grande aquí -->
-                <div class="carousel-item">
-                    <img src="https://res.cloudinary.com/dqyuxgeuv/image/upload/v1729376828/A3_RA.png" class="d-block w-100" alt="Espectáculo audiovisual en alta calidad" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-image="https://res.cloudinary.com/dqyuxgeuv/image/upload/v1729735276/3_jw0hh1.png">
-                </div>
-                <!-- Quinta imagen, coloca la URL de la imagen grande aquí -->
-                <div class="carousel-item">
-                    <img src="https://res.cloudinary.com/dqyuxgeuv/image/upload/v1729376828/A4_DE3D.png" class="d-block w-100" alt="Espectáculo audiovisual profesional para eventos" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-image="https://res.cloudinary.com/dqyuxgeuv/image/upload/v1729735285/4_fwhdpa.png">
+                    <img src="https://res.cloudinary.com/dqyuxgeuv/image/upload/v1729993574/1_SERVICIO_VMARQ_tiozma.webp" class="d-block w-100" alt="Producción de espectáculos audiovisuales para eventos en México" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-image="https://res.cloudinary.com/dqyuxgeuv/image/upload/v1729993574/1_CONTENIDO_bv7kla.webp">
                 </div>
             </div>
 
-            <!-- Controles del Carrusel con aria-labels para accesibilidad -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev" aria-label="Previous Slide">
+            <!-- Controles del Carrusel -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Anterior</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next" aria-label="Next Slide">
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Siguiente</span>
             </button>
         </div>
     </section>
 
-    <!-- Modal para mostrar la imagen grande sin el título -->
+    <!-- Modal para mostrar la imagen grande -->
     <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-fullscreen">
             <div class="modal-content">
                 <div class="modal-body">
                     <img id="modalImage" src="" alt="Imagen grande" class="img-fluid">
-                    <button type="button" class="btn-close-modal" data-bs-dismiss="modal" aria-label="Close">&times;</button>
                 </div>
             </div>
         </div>
@@ -203,23 +162,22 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Script para cargar la imagen correcta en el modal y detener el carrusel -->
+    <!-- Script para cargar la imagen correcta en el modal y aplicar estilos específicos a la segunda imagen -->
     <script>
         const modalImage = document.getElementById('modalImage');
         const imageModal = document.getElementById('imageModal');
-        const heroCarousel = new bootstrap.Carousel(document.getElementById('heroCarousel'), {
-            interval: 5000 // 30 segundos de intervalo entre cambios de imágenes
-        });
-        
+
         imageModal.addEventListener('show.bs.modal', function (event) {
             const button = event.relatedTarget;
             const imageSrc = button.getAttribute('data-bs-image');
             modalImage.src = imageSrc;
-            heroCarousel.pause(); // Detener el carrusel cuando se abra el modal
-        });
 
-        imageModal.addEventListener('hide.bs.modal', function () {
-            heroCarousel.cycle(); // Reiniciar el carrusel cuando se cierre el modal
+            // Aplica la clase de fondo específico si se abre la segunda imagen
+            if (imageSrc.includes("1_CONTENIDO_bv7kla.webp")) {
+                imageModal.querySelector('.modal-body').classList.add('second-image-modal');
+            } else {
+                imageModal.querySelector('.modal-body').classList.remove('second-image-modal');
+            }
         });
     </script>
 
