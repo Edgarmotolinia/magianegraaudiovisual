@@ -21,11 +21,11 @@
             padding: 0;
             height: 100%;
             color: white;
-            background-image: url('https://res.cloudinary.com/dqyuxgeuv/image/upload/v1729369720/background_czwhsd.png'); /* Imagen de fondo */
-            background-size: cover;
-            background-attachment: fixed;
-            background-position: center;
             font-size: 1rem;
+            background-image: url('https://res.cloudinary.com/dqyuxgeuv/image/upload/v1729369720/background_czwhsd.png');
+            background-size: cover;
+            background-position: center;
+            transition: background-image 0.5s ease-in-out; /* Transición suave para el fondo */
         }
 
         .carousel-container {
@@ -44,15 +44,9 @@
             object-position: center;
         }
 
-        /* Clase compartida para aplicar el fondo a otras secciones y al footer */
-        .bg-shared {
-            background-image: url('https://res.cloudinary.com/dqyuxgeuv/image/upload/v1729369720/background_czwhsd.png');
-            background-size: cover;
-            background-position: center;
-        }
-
-        section, footer {
-            class: bg-shared;
+        /* Estilos específicos para la segunda y tercera imagen del carrusel sin fondo */
+        .carousel-item:nth-child(2), .carousel-item:nth-child(3) {
+            background: none;
         }
 
         /* Footer con Contacto y logo de WhatsApp */
@@ -87,44 +81,54 @@
             box-shadow: none;
         }
 
-        .modal-body {
+        /* Fondo específico para el modal de la segunda imagen del carrusel */
+        #fullscreenModal .modal-body {
+            background-image: url('https://res.cloudinary.com/dqyuxgeuv/image/upload/v1730176509/1_FONDO_VM_ARQUITECTONICO_2_mlq50a.jpg');
+            background-size: cover;
+            background-position: center;
             display: flex;
             justify-content: center;
             align-items: center;
             position: relative;
-            background-color: black; /* Fondo por defecto del modal */
+        }
+
+        /* Fondo específico para el modal de la tercera imagen del carrusel */
+        #fullscreenModalThird .modal-body {
+            background-image: url('https://res.cloudinary.com/dqyuxgeuv/image/upload/v1729369720/background_czwhsd.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
         }
 
         .modal-body img {
             width: 100%;
             height: auto;
         }
-
-        /* Fondo específico para pantallas pequeñas en la segunda imagen del modal */
-        @media (max-width: 576px) {
-            .modal-body.second-image-modal {
-                background-image: url('https://res.cloudinary.com/dqyuxgeuv/image/upload/v1729993574/1_FONDO_VM_ARQUITECTONICO_d8wfpp.webp');
-                background-size: cover;
-                background-position: center;
-            }
-        }
     </style>
 </head>
 <body>
 
     <!-- Carrusel que abarca el 100% de la pantalla -->
-    <section id="hero" class="hero bg-shared">
+    <section id="hero" class="hero">
         <div id="heroCarousel" class="carousel slide carousel-container" data-bs-ride="carousel">
             <div class="carousel-inner">
                 
-                <!-- Primera imagen del carrusel -->
-                <div class="carousel-item active">
+                <!-- Primera imagen del carrusel sin fondo personalizado -->
+                <div class="carousel-item active" data-bg="black">
                     <img src="https://res.cloudinary.com/dqyuxgeuv/image/upload/v1729376828/logoSOLO_fkykxe.png" class="d-block w-100" alt="Espectáculo audiovisual con realidad aumentada">
                 </div>
 
-                <!-- Segunda imagen del carrusel con comportamiento específico al hacer clic -->
-                <div class="carousel-item">
-                    <img src="https://res.cloudinary.com/dqyuxgeuv/image/upload/v1729993574/1_SERVICIO_VMARQ_tiozma.webp" class="d-block w-100" alt="Producción de espectáculos audiovisuales para eventos en México" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-image="https://res.cloudinary.com/dqyuxgeuv/image/upload/v1729993574/1_CONTENIDO_bv7kla.webp">
+                <!-- Segunda imagen del carrusel sin fondo y con acción para pantalla completa -->
+                <div class="carousel-item" data-bg="black">
+                    <img src="https://res.cloudinary.com/dqyuxgeuv/image/upload/v1730174166/20_MAGIA_NEGRA_serv_2_V_INT_DINAMIC_2_vjfgzh.png" class="d-block w-100" alt="Producción de espectáculos audiovisuales para eventos en México" data-bs-toggle="modal" data-bs-target="#fullscreenModal">
+                </div>
+
+                <!-- Tercera imagen del carrusel sin fondo y con acción para pantalla completa -->
+                <div class="carousel-item" data-bg="black">
+                    <img src="https://res.cloudinary.com/dqyuxgeuv/image/upload/v1730174165/20_MAGIA_NEGRA_serv_1_RA_2_wmxc1b.png" class="d-block w-100" alt="Espectáculo de realidad aumentada en México" data-bs-toggle="modal" data-bs-target="#fullscreenModalThird">
                 </div>
             </div>
 
@@ -140,19 +144,30 @@
         </div>
     </section>
 
-    <!-- Modal para mostrar la imagen grande -->
-    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <!-- Modal para la segunda imagen del carrusel -->
+    <div class="modal fade" id="fullscreenModal" tabindex="-1" aria-labelledby="fullscreenModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-fullscreen">
             <div class="modal-content">
                 <div class="modal-body">
-                    <img id="modalImage" src="" alt="Imagen grande" class="img-fluid">
+                    <img src="https://res.cloudinary.com/dqyuxgeuv/image/upload/v1730170540/1_jusqdg.png" alt="Imagen en pantalla completa" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para la tercera imagen del carrusel -->
+    <div class="modal fade" id="fullscreenModalThird" tabindex="-1" aria-labelledby="fullscreenModalThirdLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="https://res.cloudinary.com/dqyuxgeuv/image/upload/v1730170540/2_q1hjup.png" alt="Imagen en pantalla completa" class="img-fluid">
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Footer clásico centrado con "Contacto" y logo de WhatsApp -->
-    <footer class="bg-shared">
+    <footer>
         <p>&copy; 2024 Magia Negra Audiovisual. Todos los derechos reservados.</p>
         <a href="https://wa.me/525577193213" target="_blank">
             Contacto <i class="fab fa-whatsapp"></i>
@@ -162,21 +177,21 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Script para cargar la imagen correcta en el modal y aplicar estilos específicos a la segunda imagen -->
+    <!-- Script para cargar la imagen correcta en el modal y cambiar el fondo en sincronía con el carrusel -->
     <script>
-        const modalImage = document.getElementById('modalImage');
-        const imageModal = document.getElementById('imageModal');
+        const heroCarousel = document.getElementById('heroCarousel');
 
-        imageModal.addEventListener('show.bs.modal', function (event) {
-            const button = event.relatedTarget;
-            const imageSrc = button.getAttribute('data-bs-image');
-            modalImage.src = imageSrc;
+        // Cambia el fondo de la página al cambiar el slide
+        heroCarousel.addEventListener('slide.bs.carousel', function (event) {
+            const nextSlide = event.relatedTarget;
 
-            // Aplica la clase de fondo específico si se abre la segunda imagen
-            if (imageSrc.includes("1_CONTENIDO_bv7kla.webp")) {
-                imageModal.querySelector('.modal-body').classList.add('second-image-modal');
+            // Cambia el fondo de toda la página en función de la imagen activa
+            if (nextSlide === heroCarousel.querySelector('.carousel-item:nth-child(2)')) {
+                document.body.style.backgroundImage = "url('https://res.cloudinary.com/dqyuxgeuv/image/upload/v1730175595/1_FONDO_VM_ARQUITECTONICO_ojzqrw.jpg')";
+            } else if (nextSlide === heroCarousel.querySelector('.carousel-item:nth-child(3)')) {
+                document.body.style.backgroundImage = "url('https://res.cloudinary.com/dqyuxgeuv/image/upload/v1730177200/2_FONDO_VM_INTERACTIVO_zlyv4a.jpg')";
             } else {
-                imageModal.querySelector('.modal-body').classList.remove('second-image-modal');
+                document.body.style.backgroundImage = "url('https://res.cloudinary.com/dqyuxgeuv/image/upload/v1729369720/background_czwhsd.png')";
             }
         });
     </script>
