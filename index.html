@@ -44,8 +44,8 @@
             object-position: center;
         }
 
-        /* Estilos específicos para la segunda y tercera imagen del carrusel sin fondo */
-        .carousel-item:nth-child(2), .carousel-item:nth-child(3) {
+        /* Estilos específicos para la segunda, tercera y cuarta imagen del carrusel sin fondo */
+        .carousel-item:nth-child(2), .carousel-item:nth-child(3), .carousel-item:nth-child(4) {
             background: none;
         }
 
@@ -94,7 +94,18 @@
 
         /* Fondo específico para el modal de la tercera imagen del carrusel */
         #fullscreenModalThird .modal-body {
-            background-image: url('https://res.cloudinary.com/dqyuxgeuv/image/upload/v1729369720/background_czwhsd.png');
+            background-image: url('https://res.cloudinary.com/dqyuxgeuv/image/upload/v1730177200/2_FONDO_VM_INTERACTIVO_2_s5xb5d.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Fondo específico para el modal de la cuarta imagen del carrusel */
+        #fullscreenModalFourth .modal-body {
+            background-image: url('https://res.cloudinary.com/dqyuxgeuv/image/upload/v1731030358/3_FONDO_REALIDAD_AUMENTADA_eozem5.jpg');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -130,6 +141,11 @@
                 <div class="carousel-item" data-bg="black">
                     <img src="https://res.cloudinary.com/dqyuxgeuv/image/upload/v1730174165/20_MAGIA_NEGRA_serv_1_RA_2_wmxc1b.png" class="d-block w-100" alt="Espectáculo de realidad aumentada en México" data-bs-toggle="modal" data-bs-target="#fullscreenModalThird">
                 </div>
+
+                <!-- Cuarta imagen del carrusel sin fondo y con acción para pantalla completa -->
+                <div class="carousel-item" data-bg="black">
+                    <img src="https://res.cloudinary.com/dqyuxgeuv/image/upload/v1730174165/20_MAGIA_NEGRA_serv_5_RENDER_2_mhvpwt.png" class="d-block w-100" alt="Render de servicio audiovisual" data-bs-toggle="modal" data-bs-target="#fullscreenModalFourth">
+                </div>
             </div>
 
             <!-- Controles del Carrusel -->
@@ -159,8 +175,19 @@
     <div class="modal fade" id="fullscreenModalThird" tabindex="-1" aria-labelledby="fullscreenModalThirdLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-fullscreen">
             <div class="modal-content">
-                <div class="modal-body">
+                <div class="modal-body" style="background-image: url('https://res.cloudinary.com/dqyuxgeuv/image/upload/v1730177200/2_FONDO_VM_INTERACTIVO_2_s5xb5d.jpg'); background-size: cover; background-position: center;">
                     <img src="https://res.cloudinary.com/dqyuxgeuv/image/upload/v1730170540/2_q1hjup.png" alt="Imagen en pantalla completa" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para la cuarta imagen del carrusel -->
+    <div class="modal fade" id="fullscreenModalFourth" tabindex="-1" aria-labelledby="fullscreenModalFourthLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-body" style="background-image: url('https://res.cloudinary.com/dqyuxgeuv/image/upload/v1731030358/3_FONDO_REALIDAD_AUMENTADA_eozem5.jpg'); background-size: cover; background-position: center;">
+                    <img src="https://res.cloudinary.com/dqyuxgeuv/image/upload/v1730170540/3_rjbico.png" alt="Imagen en pantalla completa" class="img-fluid">
                 </div>
             </div>
         </div>
@@ -177,22 +204,47 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Script para cargar la imagen correcta en el modal y cambiar el fondo en sincronía con el carrusel -->
+    <!-- Script para manejar el carrusel, modales y el botón de retroceso -->
     <script>
         const heroCarousel = document.getElementById('heroCarousel');
+        let activeSlideIndex = 0;
 
-        // Cambia el fondo de la página al cambiar el slide
+        // Función para cambiar el fondo de la página al cambiar el slide
         heroCarousel.addEventListener('slide.bs.carousel', function (event) {
-            const nextSlide = event.relatedTarget;
-
-            // Cambia el fondo de toda la página en función de la imagen activa
-            if (nextSlide === heroCarousel.querySelector('.carousel-item:nth-child(2)')) {
+            activeSlideIndex = Array.from(heroCarousel.querySelectorAll('.carousel-item')).indexOf(event.relatedTarget);
+            if (activeSlideIndex === 1) {
                 document.body.style.backgroundImage = "url('https://res.cloudinary.com/dqyuxgeuv/image/upload/v1730175595/1_FONDO_VM_ARQUITECTONICO_ojzqrw.jpg')";
-            } else if (nextSlide === heroCarousel.querySelector('.carousel-item:nth-child(3)')) {
+            } else if (activeSlideIndex === 2) {
                 document.body.style.backgroundImage = "url('https://res.cloudinary.com/dqyuxgeuv/image/upload/v1730177200/2_FONDO_VM_INTERACTIVO_zlyv4a.jpg')";
+            } else if (activeSlideIndex === 3) {
+                document.body.style.backgroundImage = "url('https://res.cloudinary.com/dqyuxgeuv/image/upload/v1731030358/3_FONDO_REALIDAD_AUMENTADA_eozem5.jpg')";
             } else {
                 document.body.style.backgroundImage = "url('https://res.cloudinary.com/dqyuxgeuv/image/upload/v1729369720/background_czwhsd.png')";
             }
+        });
+
+        // Script para manejar el historial y cerrar el modal al usar el botón de retroceso
+        const modals = document.querySelectorAll('.modal');
+
+        modals.forEach((modal) => {
+            modal.addEventListener('shown.bs.modal', () => {
+                // Agrega una entrada al historial cuando se abre el modal
+                history.pushState(null, null, location.href);
+            });
+
+            modal.addEventListener('hidden.bs.modal', () => {
+                // Cuando el modal se cierra, retrocede en el historial
+                if (history.state !== null) history.back();
+            });
+        });
+
+        window.addEventListener('popstate', () => {
+            modals.forEach((modal) => {
+                const modalInstance = bootstrap.Modal.getInstance(modal);
+                if (modalInstance && modal.classList.contains('show')) {
+                    modalInstance.hide();
+                }
+            });
         });
     </script>
 
